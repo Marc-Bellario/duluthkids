@@ -1,3 +1,30 @@
+below you will find the original readme
+
+the current file you should run is mongo-forum.py
+and on line 21 you'll find: 
+db = client.flask_forumD
+
+this is the mongo database you are pointing at....
+
+so for example ---
+on line 57 - you'll find:
+existing = db.users.find({"username":[username]})
+and this will try to find a document in the
+" users " collection for [username]
+
+and any way --- it is a bit confusing because ---->
+I left most of the original code - so just
+compare app.py with mongo_forum.py ....
+
+Sorry for the confusion I am pretty sure this
+will cause you -- I will try and branch this
+at some point to a " cleaner " mongo-forum
+
+
+
+
+
+< original readme >
 flask-form is very simple web forum written with Python (language), Flask (web framework), SQLite (database), and WTForms (HTML forms frameword). It is being written as a learning exercise, and includes documentation and configuration for running on Ubuntu.
 
 
