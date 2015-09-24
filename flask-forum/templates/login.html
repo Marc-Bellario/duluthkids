@@ -1,0 +1,9 @@
+{% extends "template.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h1>Login</h1>
+<form name="input" action="login" method="post">
+{% from "_formhelpers.html" import render_form %} {{ render_form(form) }}
+<input type="submit" value="Login" />
+</form>
+{% endblock %}

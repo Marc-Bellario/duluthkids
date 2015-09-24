@@ -1,0 +1,14 @@
+{% extends "template.html" %}
+{% block title %}New topic{% endblock %}
+{% block content %}
+<h1>New topic</h1>
+{% if g.username %}
+<form name="input" action="/topic/new" method="post">
+{% from "_formhelpers.html" import render_form %} {{ render_form(form) }}
+<input type="submit" value="Post Topic" />
+</form>
+{% else %}
+<p>You need to <a href="/login">login</a> to post a topic.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Test Site - {% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}" type="text/css" />
+</head>
+<body>
+<div id="header">
+<h1>Test Site</h1>
+<ul>
+{% if g.username %}
+<li>
+<form name="input" action="/logout" method="post">
+Logged in as {{ g.username }}.
+<input name="csrf_token" type="hidden" value="TODO">
+<input type="submit" value="Logout" />
+</form>
+</li>
+{% endif %}
+<li><a href="/">Topics</a></li>
+{% if not g.username %}
+<li><a href="/login">Login</a></li>
+<li><a href="/register">Register</a></li>
+{% endif %}
+</ul>
+</div>
+<div id="main">
+{% with messages = get_flashed_messages() %}{% if messages %}
+<ul class=flashes>
+{% for message in messages %}<li>{{ message }}</li>{% endfor %}
+</ul>
+{% endif %}{% endwith %}
+{% block content %}
+<h1>{{ page_name }}</h1>
+{{ page_body }}
+{% endblock %}
+</div>
+<div id="footer">
+<div id="hr"></div>
+powered by flask-forum
+</div>
+</body>
+</html>
