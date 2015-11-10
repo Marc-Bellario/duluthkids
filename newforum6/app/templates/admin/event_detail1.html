@@ -1,0 +1,55 @@
+{% extends 'admin/master.html' %}
+
+{% block title %}Event: {{ event.title }}{% endblock %}
+{% block body %}
+    <h3>Swingtime Event</h3>
+    <h4>Event Details</h4>
+    <form action="" method="post">
+    <table>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="_update" value="Update" />
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+        {% include "admin/event_form_part.html" %}
+        </tbody>
+    </table>
+    </form>
+
+    <h4>Notes</h4>
+    {% if event.notes %}
+    <ul>
+        <li>{{ event.notes }}</li>
+    </ul>
+    {% else %}
+    <p>None</p>
+    {% endif %}
+
+    <h4>Occurrences</h4>
+    {% if event[0].occurrences %}
+
+  <table  class="table table-bordered table-striped">
+    <thead>
+      <th>Key</th>
+      <th>Start DateTme</th>
+      <th>End DateTime</th>
+    </thead>
+    <tbody>
+    {% for o in event[0].occurrences %}
+      <tr>
+        <th><a href="{{ url_for('.edit_occurrence', id=event[0].id, key=o.key) }}">{{o.key}}</a></th>
+        <td>{{ o.occurrence.start_time }}</td>
+        <td>{{ o.occurrence.end_time }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+    {% else %}
+    <p>None*<p>
+    {% endif %}
+
+    <h4>Add Occurrences</h4>
+{% endblock %}

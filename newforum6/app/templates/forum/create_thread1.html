@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{# #}
+{% block content %}
+
+<h1>Create Thread</h1>
+<h2>for {{ board.title }}</h2>
+<br><br>
+<form method="POST" action="">
+    {{ form.csrf_token }}
+    <h4> THREAD SUBJECT: </h4>
+    {{ form.name(cols="35", rows="3") }}
+    <br><br>
+    <h4> THREAD CONTENT: </h4>
+    {{ form.content(cols="45", rows="10") }}
+    <br><br>
+    {{ form.submit }}
+</form>
+{% endblock %}

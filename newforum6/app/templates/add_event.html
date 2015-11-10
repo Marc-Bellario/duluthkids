@@ -1,0 +1,51 @@
+{% extends 'admin/master.html'  %}
+{% block title %}Add Event{% endblock %}
+
+{% block body %}
+        <style type="text/css">body{padding-top:70px}</style>
+        <style>
+            .form-indent { margin-left: 1.5em; }
+            .horizontal { width: 30em; }
+            .horizontal li { float: left; margin: 0; }
+            .horizontal li label { width: 4em; display: block; float: left; }
+        </style>
+        <style type="text/css">ul.nav li a, ul.nav li a:visited {color: #7BEF00 !important;}ul.nav li a:hover, ul.nav li a:active {color: #55A500 !important;}ul.nav li.active a {color: #7BEF00 !important;}</style>
+{#        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> #}
+{#        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> #}
+{#    <link href={{ url_for('static', filename='css/bootstrap.min.css')}}  rel="stylesheet" media="screen"> #}
+{#    <link href={{ url_for('static', filename='css/bootstrap-datetimepicker.min.css')}} rel="stylesheet" media="screen">  #}
+{# <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" /> #}
+{# <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" /> #}
+
+{# <script type="text/javascript" src={{ url_for('static', filename='js/jquery-1.8.3.min.js') }} charset="UTF-8"></script> #}
+{# <script type="text/javascript" src={{ url_for('static', filename='js/bootstrap.min.js') }}></script> #}
+{# <script type="text/javascript" src={{ url_for('static', filename='js/bootstrap-datetimepicker.js')}}  charset="UTF-8"></script> #}
+{# <script type="text/javascript" src={{ url_for('static', filename='js/locales/bootstrap-datetimepicker.fr.js')}} charset="UTF-8"></script> #}
+<link href="/admin/static/vendor/select2/select2.css?v=3.5.2" rel="stylesheet">
+<link href="/admin/static/vendor/select2/select2-bootstrap3.css?v=1.4.6" rel="stylesheet">
+<link href="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs3.css?v=1.3.22" rel="stylesheet">
+
+    <h3>Add Event</h3>
+    {{ event_form.non_field_errors }}
+    {{ recurrence_form.non_field_errors }}
+    {% if event_form.errors or recurrence_form.errors %}
+    <p class="form-errors">Please fix any errors.</p>
+    {% endif %}
+  {#  <form method="post" action=""> #}
+      <form action="" method="POST" role="form" class="admin-form form-horizontal" enctype="multipart/form-data">
+    <table>
+        <tfoot>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit" /></td>
+            </tr>
+        </tfoot>
+        <tbody>
+        {% include "admin/event_form_part.html" %}
+        {% include "admin/recurring_form_part.html" %}
+        </tbody>
+    </table>
+    </form>
+    <script src="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22"></script>
+
+     <script src="/admin/static/admin/js/form.js?v=1.0.0"></script>
+{% endblock %}

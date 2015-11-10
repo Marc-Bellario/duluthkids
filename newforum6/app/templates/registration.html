@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <form action="" method="POST" name="form">
+            <br><br><br>
+            <div class="col-md-4 col-md-offset-4">
+
+
+
+                <div class="form-group">
+                    <label class="control-label" for="org">Organization</label>
+                    {{ form.org }}
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="type">Registration Type</label>
+                    {{ form.reg_type }}
+                </div>
+               <div class="form-group">
+                    <label class="control-label" for="message">Message</label>
+                    {{ form.message(cols="45", rows="5") }}
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="first_name">First Name</label>
+                    {{ form.first_name }}
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="last_name">Last Name</label>
+                    {{ form.last_name }}
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="email">Email</label>
+                    {{ form.email }}
+                </div>
+                <button class="btn btn-default" type="submit">Submit</button>
+            </div>
+        </form>
+
+{% endblock %}

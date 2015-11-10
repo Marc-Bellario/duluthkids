@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="form-horizontal" role="form" method="post" name="new">
+    <legend>{{ title }}</legend>
+    {{ form.hidden_tag() }}
+    <table id="threads" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+            <th> To </th>
+            <th> Creator </th>
+            <th> Subject </th>
+        </tr>
+      </thead>
+
+    <tbody>
+
+    <tr>
+    <th>{{ form.name_to }}</th>
+    <td>{{ form.name_from }}</td>
+    <td>{{ form.subject }}</td>
+
+  </tr>
+  </tbody>
+    </table>
+    <table id="threads" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+            <th> Message </th>
+        </tr>
+      </thead>
+
+    <tbody>
+      <tr>
+      <th>{{ form.content }}</th>
+    </tr>
+    </tbody>
+      </table>
+  <br><br>
+    <div class="form-group row">
+        <div class="col-sm-offset-3 col-lg-9">
+            {{ form.delete_message }}
+        </div>
+    </div>
+</form>
+{% endblock %}

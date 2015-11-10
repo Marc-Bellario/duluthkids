@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{# #}
+{% block content %}
+
+<h1>Create Post </h1>
+<h2>in thread:{{ thread.title }}</h2>
+<br><br>
+<form method="POST" action="">
+    {{ form.csrf_token }}
+    <h4>POST TITLE:</h4>
+    {{ form.title (cols="35", rows="3")}}
+     <br><br>
+    <h4>POST BODY:</h4>
+    {{ form.content(cols="45", rows="10") }}
+      <br>
+    {{ form.submit }}
+</form>
+{% endblock %}

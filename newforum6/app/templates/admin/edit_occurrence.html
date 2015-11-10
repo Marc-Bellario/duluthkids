@@ -1,0 +1,58 @@
+{% extends 'admin/master.html' %}
+
+{% block title %}Event: {{ event.title }}{% endblock %}
+{% block body %}
+  <br><br>
+<tbody>
+       <tr><th>Event Type Label</th>
+            <td> {{ "oof" }}</td></tr>
+        <tr><th> Event Title </th>
+            <td>{{ event.title }}</td></tr>
+        <tr><th> Event Description </th>
+            <td>{{ event.description }}</td></tr>
+</tbody>
+    <h4>Notes</h4>
+
+
+    <h4>Occurrence</h4>
+ <form action="#" method="post" class="form-horizontal"  role="form">
+  <table  class="table table-bordered table-striped">
+    <thead>
+      <th>Key</th>
+      <th>Start DateTme</th>
+      <th>End DateTime</th>
+    </thead>
+    <tbody>
+    
+      <tr>
+        <th>{{key}}</th>
+        <td>   
+            <div class="form-group">
+                <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
+                <div class="input-group date form_datetime1 col-md-5" data-date="1999-09-16T05:25:07Z" data-date-format="dd mm yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" id="dtp_input1" name="start_time" type="datetime" value="{{form.start_time}}">
+                    
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+		    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+       </td>
+        <td>  
+            <div class="form-group">
+                <label for="dtp_input2" class="col-md-2 control-label">DateTime Picking</label>
+                <div class="input-group date form_datetime2 col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd mm yyyy - HH:ii p" data-link-field="dtp_input2">
+                    <input class="form-control" id="dtp_input2" name="end_time" type="datetime" value="{{form.end_time}}">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+		    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input2" value="" /><br/>
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+       <input type="submit"/>
+    </form>
+    <h4>Add Occurrences</h4>
+{% endblock %}

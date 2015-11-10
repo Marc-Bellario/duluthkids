@@ -1,0 +1,10 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+  <p>Hello world</p>
+  <p> These are the admin pages for DuluthKids </p>
+  <li><a href="{{ url_for('home') }}">HOME</a></li>
+  {% if current_user.is_superuser %}
+       <li><a href="/check_passwords">Check Passwords</a></li>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+class AddEvent(BaseView):
+    @expose('/')
+    def index(self):
+        return redirect(url_for('.event'))
+
+    @expose('/', methods=('GET', 'POST'))
+        def event(self, uid):
+        dtstart=datetime.now()
+        event_form = forms.EventForm(Choices=build_choice())
+        recurrence_form = forms.MultipleOccurrenceForm()
+        if form.validate_on_submit():
+          #  data = form.data
+          #  user.set(**data)
+          #  event.save()
+            flash("Your profile has been saved")
+        else:
+            flash("form did not validate on submit")
+        return render_template('admin/add_event.html',dtstart=dtstart,event_form=event_form, recurrence_form=recurrence_form)

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{# #}
+{% block content %}
+
+
+<h1>{{ title }}</h1>
+
+
+<br>
+<table id="message" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+        <th>Subject </th>
+        <th> creator </th>
+        <th> created </th>
+
+    </tr>
+  </thead>
+
+<tbody>
+{% for m in messages %}
+
+  <tr>
+<td><a href="{{ url_for('.message_detail',id=m.id) }}">{{ m.subject }}</a> </td>
+<th>  {{m.user_from.first_name}}</th>
+<td>  {{m.date_created.strftime('%Y-%m-%d %H:%M')}}</td>
+ </tr>
+  {% endfor %}
+</tbody>
+  </table>
+<br><br>
+{% endblock %}

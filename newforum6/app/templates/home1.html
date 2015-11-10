@@ -1,0 +1,70 @@
+{% extends "baseN.html" %}
+{% block content %}
+        <br><br><br>
+        <h2>Today's Events!</h2>
+	<!-- Simple AnythingSlider -->
+
+	<ul id="slider">
+    {% for e in events %}
+               <li>
+		  <table  class="table table-bordered table-striped">
+    <tbody>
+        <tr>
+       <th>{{ e.title }}</th>
+        </tr>
+        <tr> 
+        <td>{{e.description}}</td>
+         </tr>
+         <tr>
+        <td>{{ e.occurrences.occurrence.start_time.strftime('%Y-%m-%d %H:%M') }}</td>
+         </tr>
+         <tr>
+        <td>{{ e.occurrences.occurrence.end_time.strftime('%Y-%m-%d %H:%M') }}</td>
+         </tr> 
+    </tbody>
+  </table>    
+  </li>
+     {% endfor %}
+
+   {% if ctr < count %} 
+  <li class="panel2">
+   <div class="quoteSlide">
+    <blockquote>In awe I watched the waxing moon ride across the zenith of
+     the heavens like an ambered chariot towards the ebon void of infinite space
+     wherein the tethered belts of Jupiter and Mars hang forever festooned in 
+     their orbital majesty. And as I looked at all this I thought... I must put
+     a roof on this lavatory.<br>-- Les Dawson</blockquote>
+   </div>
+  </li>
+    {% set ctr = ctr + 1 %}
+    {% endif %}
+               {% if ctr < count %}
+		<li><img src="/static/img/slide-civil-2.jpg" alt=""></li>
+               {% set ctr = ctr + 1 %}
+               {% endif %}
+	</ul>
+
+	<!-- END AnythingSlider -->
+   <br><br>
+<h2>Next 30 days!</h2>
+
+  <table  class="table table-bordered table-striped">
+    <thead>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start</th>
+      <th>End</th>
+    </thead>
+    <tbody>
+    {% for e in events_post %}
+      <tr>
+        <th>{{ e.title }}</th>
+        <td>{{e.description}}</td> 
+        <td>{{ e.occurrences.occurrence.start_time.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td>{{ e.occurrences.occurrence.end_time.strftime('%Y-%m-%d %H:%M') }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>    
+
+{% endblock %}

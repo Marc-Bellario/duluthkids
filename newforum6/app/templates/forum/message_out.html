@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="form-vertical" role="form" method="post" name="new">
+    <legend>{{ title }}</legend>
+    {{ message_form.hidden_tag() }}
+    <table>
+    <tbody>
+    <tr><th>User</th>
+    <td>{{ message_form.name_to }}</td></tr>
+    <br>
+     <tr><th>Subject</th>
+      <td>  {{ message_form.subject}} </td></tr>
+      <br>
+           <tr><th>Message</th>
+    <td> {{ message_form.content  (columns=35, rows=7)}}</td></tr>
+    <br>
+  </tbody>
+  </table>
+  <button class="btn btn-default" type="submit" name="btn" value="send">Send</button>
+</form>
+{% endblock %}

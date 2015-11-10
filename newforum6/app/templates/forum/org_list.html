@@ -1,0 +1,19 @@
+{% extends "baseN.html" %}
+{% block content %}
+<br><br>
+<form action="" method="POST" name="form">
+<h2> Send Message </h2>
+<table>
+<tbody>
+<tr><th>Organizations</th>
+    <td>{{ form.org }}</td></tr>
+  </table>
+</tbody>
+    <br><br>
+    <button class="btn btn-default" type="submit" name="btn" value="select">Select</button>
+
+</form>
+
+{% include "forum/message_out.html" %}
+
+{% endblock %}

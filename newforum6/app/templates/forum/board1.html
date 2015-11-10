@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{# #}
+{% block content %}
+
+{% block title %}{{ board.title }}{% endblock %}
+
+<h1>{{ board.title }}</h1>
+
+
+<br>
+<table id="threads" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+        <th>Subject </th>
+        <th> creator </th>
+        <th> created </th>
+        <th> _KEY_ </th>
+    </tr>
+  </thead>
+
+<tbody>
+{% for t in threads %}
+
+  <tr>
+<th>{{ t.thread.title }}</th>
+<td>  {{t.thread.creator.first_name}}</td>
+<td>  {{t.thread.created.strftime('%Y-%m-%d %H:%M')}}</td>
+<td><a href="{{ url_for('.detail',dt=t.key, id=board.id) }}">{{ "key:" + t.key }}</a> </td> </tr>
+  {% endfor %}
+</tbody>
+  </table>
+<br><br>
+{% if current_user.is_staff() %}
+<h2><a href="{{ url_for('.create_thread', id=board.id) }}">New thread</a></h2>
+  {% endif %}
+{% endblock %}
