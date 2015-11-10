@@ -13,3 +13,21 @@ I am currently working on a forum
 using mongoengine - which I am hoping
 is a little more close to what I
 am shooting at via duluthkids.
+
+10/Nov/2015 12:27
+
+added base code for the demo version of duluthkids.net
+this is directory newforum6
+
+this code is base on loosely combining two code bases -
+https://github.com/akprasad/flask-forum
+and 
+https://github.com/dakrauth/django-swingtime
+
+both of which are written for sql type database -
+
+Newforum6 is based on mongoengine and also heavily
+depends on flask-admin.  It is a demo project for
+duluthkids.net - designed to introduce users to its
+functionality.
+
