@@ -30,4 +30,6 @@ Newforum6 is based on mongoengine and also heavily
 depends on flask-admin.  It is a demo project for
 duluthkids.net - designed to introduce users to its
 functionality.
+==============================================
+repo hooked to heroku 12/Nov/2015 1:53
 
