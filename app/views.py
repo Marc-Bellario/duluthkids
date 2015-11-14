@@ -19,7 +19,7 @@ from flask import Flask, url_for, redirect, render_template, request, session, f
 from app import app
 import flask_login as login
 from forms import LoginForm,RegistrationForm,EventForm,CreatePostForm,CreateThreadForm,MessageForm,SelectOrgForm
-from models import User, Event,Forum,Message
+from models import User, Event,Forum,Message,UserDT,Registration
 from admin1 import build_choice,build_orgs,build_users
 from datetime import datetime
 import datetime as datetime1
@@ -248,13 +248,13 @@ def register_view():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
         user_from = UserDT()
-        user_from.last_name = form.last_name
-        user_from.last_name = form.last_name
-        user_from.email = form.email
+        user_from.first_name = form.first_name.data
+        user_from.last_name = form.last_name.data
+        user_from.email = form.email.data
         registration = Registration()
-        regisration.org = form.org
-        registration.message = form.message
-        registration.reg_type = form.reg_type
+        registration.org = form.org.data
+        registration.message = form.message.data
+        registration.reg_type = form.reg_type.data
         registration.user_from = user_from
 
         registration.save()
