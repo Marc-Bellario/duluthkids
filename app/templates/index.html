@@ -13,31 +13,72 @@ body {
    background-color: #ccffcc;
     color: blue;
 }
+DIV.stack-vert
+{
+    border: solid thick red;
+    overflow:hidden;
+}
+
+DIV.stack-horz
+{
+    border: solid thick blue;
+    overflow:hidden;
+}
+
+DIV.content
+{
+    padding: 5px;
+    background-color: #e5ffe5;
+    margin: 5px;
+
+}
+
+DIV.stack-horz DIV.content
+{
+    float:left;
+}
 
 </style>
     <body>
-      <div>
-          {% if user and user.is_authenticated %}
-              Hello {{ user.login }}! <a href="{{ url_for('logout_view') }}">Logout</a>
-          {% else %}
-              Welcome anonymous user!
-              <a href="{{ url_for('login_view') }}">Login</a>&nbsp;<a href="{{ url_for('register_view') }}">Register</a>
-          {% endif %}
-      </div>
-      <div>
-          <a href="{{ url_for('admin.index') }}">Go to admin!</a>
-      </div>
-      <div>
-          <a href="{{ url_for('home') }}">Go to home!</a>
-      </div>
+       <div class="stack-horz">
 
+         {% if user and user.is_authenticated %}
+         <div class="content" style="width: 100px; height: 40px;">
+             Hello {{ user.login }}! <a href="{{ url_for('logout_view') }}">Logout</a>
+         </div>
+         {% else %}
+         <div class="content" style="width: 100px; height: 75px;">
+             Welcome anonymous user!
+             <a href="{{ url_for('login_view') }}">Login</a>&nbsp;<a href="{{ url_for('register_view') }}">Register</a>
+         </div>
+         {% endif %}
+
+
+     <div class="content" style="width: 50px; height: 40px;">
+         <a href="{{ url_for('home') }}">Go to home!</a>
+     </div>
+     {% if current_user.is_authenticated %}
+       {% if swt_admin == True %}
+       <div class="content" style="width: 50px; height: 40px;">
+           <a href="{{ url_for('admin.index') }}">Go to admin!</a>
+       </div>
+       {% endif %}
+     {% endif %}
+
+      <br><br><br>
       <div class="center">
         <h1><b>Demo Site for Duluth Kids duluthkids@gmail.com </b></h1>
         <p> a scheduling site for youth activities   -   ages 9-13 </p>
         <p> if you have activities you wish to schedule - or want more information - please <a href="{{ url_for('register_view') }}">Register</a> </p>
         <p> to see home page <a href="{{ url_for('home') }}">Go to home!</a> </p>
       </div>
-    <div>
+      <div>
+      <br><br>
+      <p></p>
+      <p></p>
+      <p></p>
+    </div>
+    </div>
 
     </body>
 </html>

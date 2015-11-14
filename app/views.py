@@ -41,7 +41,9 @@ class MyBase(BaseView):
 
 @app.route('/')
 def index():
-    return render_template('index.html', user=login.current_user)
+    swt_admin = 'admin' in session['roles']
+    return render_template('index.html', user=login.current_user, swt_admin=swt_admin)
+
 @app.route('/list')
 @login_required
 def list():
