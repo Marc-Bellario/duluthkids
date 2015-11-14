@@ -29,7 +29,7 @@
 
 	<!-- Define slider dimensions here -->
 	<style>
-	#slider { width: 700px; height: 390px; }
+	#slider { width: 800px; height: 390px; }
 	</style>
 
 	<!-- AnythingSlider initialization -->
@@ -88,7 +88,7 @@
                         {% endif %}
                       {% endif %}
                     </ul>
-                                      
+
                     <ul class="nav navbar-nav navbar-right">
                         {% if current_user.is_authenticated %}
                             <li><a href="{{ url_for('logout_view') }}">Logout</a></li>
