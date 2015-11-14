@@ -65,6 +65,30 @@
                           <a href="{{ url_for('register_view') }}">Register</a>
                         </li>
                     </ul>
+
+                    <ul class="nav navbar-nav navbar-left">
+                       {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('board') }}">Forum</a></li>
+                       {% endif %}
+                   </ul>
+                   <ul class="nav navbar-nav navbar-left">
+                        {% if current_user.is_authenticated %}
+                             <li><a href="{{ url_for('message_out') }}">Send Message</a></li>
+                        {% endif %}
+                    </ul>
+                    <ul class="nav navbar-nav navbar-left">
+                         {% if current_user.is_authenticated %}
+                              <li><a href="{{ url_for('message_in') }}">Inbox</a></li>
+                         {% endif %}
+                     </ul>
+                   <ul class="nav navbar-nav navbar-left">
+                      {% if current_user.is_authenticated %}
+                        {% if swt_admin == True %}
+                             <li><a href="/admin">Admin</a></li>
+                        {% endif %}
+                      {% endif %}
+                    </ul>
+                                      
                     <ul class="nav navbar-nav navbar-right">
                         {% if current_user.is_authenticated %}
                             <li><a href="{{ url_for('logout_view') }}">Logout</a></li>

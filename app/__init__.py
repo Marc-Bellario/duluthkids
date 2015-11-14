@@ -75,6 +75,6 @@ admin.add_view(MessageView(Message))
 admin.add_view(MySUModelView(Registration))
 admin.add_view(MySUModelView(Organization))
 admin.add_view(UserView(User,name='USERS'))
+admin.add_view(SUUserView(User,name='SUUSERS',endpoint='duplicate_view'))
 admin.add_view(MyModelView(EventType,name='Event Types'))
 admin.add_view(EventView(Event))
-

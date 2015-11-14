@@ -1,18 +1,43 @@
 <html>
+<style>
+.center {
+    margin: auto;
+    width: 29%;
+    border:3px solid #73AD21;
+    padding: 5px;
+}
+h1 {
+    color: green;
+}
+body {
+   background-color: #ccffcc;
+    color: blue;
+}
+
+</style>
     <body>
-        <div>
-            {% if user and user.is_authenticated %}
-                Hello {{ user.login }}! <a href="{{ url_for('logout_view') }}">Logout</a>
-            {% else %}
-                Welcome anonymous user!
-                <a href="{{ url_for('login_view') }}">Login</a>&nbsp;<a href="{{ url_for('register_view') }}">Register</a>
-            {% endif %}
-        </div>
-        <div>
-            <a href="{{ url_for('admin.index') }}">Go to admin!</a>
-        </div>
-        <div>
-            <a href="{{ url_for('home') }}">Go to home!</a>
-        </div>
+      <div>
+          {% if user and user.is_authenticated %}
+              Hello {{ user.login }}! <a href="{{ url_for('logout_view') }}">Logout</a>
+          {% else %}
+              Welcome anonymous user!
+              <a href="{{ url_for('login_view') }}">Login</a>&nbsp;<a href="{{ url_for('register_view') }}">Register</a>
+          {% endif %}
+      </div>
+      <div>
+          <a href="{{ url_for('admin.index') }}">Go to admin!</a>
+      </div>
+      <div>
+          <a href="{{ url_for('home') }}">Go to home!</a>
+      </div>
+
+      <div class="center">
+        <h1><b>Demo Site for Duluth Kids duluthkids@gmail.com </b></h1>
+        <p> a scheduling site for youth activities   -   ages 9-13 </p>
+        <p> if you have activities you wish to schedule - or want more information - please <a href="{{ url_for('register_view') }}">Register</a> </p>
+        <p> to see home page <a href="{{ url_for('home') }}">Go to home!</a> </p>
+      </div>
+    <div>
+
     </body>
 </html>

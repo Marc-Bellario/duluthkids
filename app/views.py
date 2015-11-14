@@ -46,7 +46,8 @@ def index():
 @login_required
 def list():
     boards = Forum.objects.all()
-    return render_template('forum/index1.html', boards=boards)
+    swt_admin = 'admin' in session['roles']
+    return render_template('forum/index1.html', boards=boards, swt_admin=swt_admin)
 
 #=========================================================================
 
@@ -66,7 +67,8 @@ def detail(id,dt):
         print " no threads "
     t_ret,cnt = Helper().find_thread(threads,dt)
     rec_cnt = 0;
-    return render_template('forum/detail1.html', board=board[0], thread=t_ret, key=dt)
+    swt_admin = 'admin' in session['roles']
+    return render_template('forum/detail1.html', board=board[0], thread=t_ret, key=dt, swt_admin=swt_admin)
 
 @app.route('/board')
 def board():
@@ -86,9 +88,9 @@ def board():
         print 'Logged in as %s' % session['username']
     else:
         print ' No username in session '
-
+    swt_admin = 'admin' in session['roles']
     return render_template('forum/board1.html', board=board[0],
-                           threads=threads)
+                           threads=threads, swt_admin=swt_admin)
 
 @app.route('/<id>/create/', methods=GET_POST)
 @login_required
@@ -114,9 +116,10 @@ def create_thread(id):
 
         return redirect(url_for('.board', slug=slug))
 
-
+    swt_admin = 'admin' in session['roles']
     return render_template('forum/create_thread1.html', board=board[0],
-                           form=form)
+                           form=form, swt_admin=swt_admin)
+
 @app.route('/<id>/<dt>/create/', methods=GET_POST)
 @login_required
 def create_post(id,dt):
@@ -146,9 +149,9 @@ def create_post(id,dt):
         return redirect(url_for('.board', slug=slug))
 
 
-
+    swt_admin = 'admin' in session['roles']
     return render_template('forum/create_post1.html', thread=t_ret,
-                           form=form)
+                           form=form, swt_admin=swt_admin)
 
 
 
@@ -156,7 +159,8 @@ def create_post(id,dt):
 @app.route('/write', methods=['GET', 'POST'])
 #@login_required
 def write():
-    return render_template('write.html')
+    swt_admin = 'admin' in session['roles']
+    return render_template('write.html',swt_admin=swt_admin)
 
 @app.route('/logout')
 def logout():
@@ -164,9 +168,9 @@ def logout():
     return redirect(url_for('login'))
 @app.route('/home')
 def home():
-    s1=datetime.today() + datetime1.timedelta(days=21)
-    s2=datetime.today() + datetime1.timedelta(days=22)
-    s3=datetime.today() + datetime1.timedelta(days=52)
+    s1=datetime.today() + datetime1.timedelta(days=1)
+    s2=datetime.today() + datetime1.timedelta(days=2)
+    s3=datetime.today() + datetime1.timedelta(days=32)
 
     print s1
     time_start=s1.strftime("%Y-%m-%d 00:00:00")
@@ -204,7 +208,8 @@ def home():
         doclist2.append(doc)
     count = len(doclist1)
     flash("This is a demo !!", category='success')
-    return render_template('home1.html',events=doclist1,events_post=doclist2,count=count,ctr=0)
+    swt_admin = 'admin' in session['roles']
+    return render_template('home1.html',events=doclist1,events_post=doclist2,count=count,ctr=0,swt_admin=swt_admin)
 
 @app.route('/check_passwords/')
 def check_passwords():
@@ -234,7 +239,8 @@ def login_view():
 #        print session['org']
         flash("Logged in successfully!", category='success')
         return redirect(url_for('index'))
-    return render_template('login.html', title='login', form=form)
+    swt_admin = 'admin' in session['roles']
+    return render_template('login.html', title='login', form=form, swt_admin=swt_admin)
 
 
 @app.route('/register/', methods=('GET', 'POST'))
@@ -254,8 +260,8 @@ def register_view():
         registration.save()
         flash("Your registration will be reviewed", category='success')
         return redirect(url_for('home'))
-
-    return render_template('registration.html', form=form)
+    swt_admin = 'admin' in session['roles']
+    return render_template('registration.html', form=form, swt_admin=swt_admin)
 
 
 @app.route('/logout/')
@@ -276,7 +282,8 @@ def message_detail(id):
     form.name_to = message[0].user.first_name
     form.name_from = message[0].user_from.first_name
     form.subject = message[0].subject
-    return render_template('forum/message_detail.html',form=form)
+    swt_admin = 'admin' in session['roles']
+    return render_template('forum/message_detail.html',form=form, swt_admin=swt_admin)
 
 #-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
@@ -309,7 +316,8 @@ def message_out():
             message.save()
             flash("Message Sent", category='success')
 #    message_form = MessageForm()
-    return render_template('forum/org_list.html' ,form=org_form, message_form=message_form)
+    swt_admin = 'admin' in session['roles']
+    return render_template('forum/org_list.html' ,form=org_form, message_form=message_form,swt_admin=swt_admin)
 
 #-------------------------------------------------------------------------------
 @app.route('/message_in/')
@@ -320,7 +328,8 @@ def message_in():
     except Exception as e:
         print " exception value: ", e
         return redirect(url_for('.index'))
-    return render_template('forum/message_list.html' ,messages=messages)
+    swt_admin = 'admin' in session['roles']
+    return render_template('forum/message_list.html' ,messages=messages,swt_admin=swt_admin)
 #    return redirect(url_for('index'))
 
 #-------------------------------------------------------------------------------

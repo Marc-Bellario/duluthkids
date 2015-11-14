@@ -88,6 +88,11 @@ ORDINAL = [
     (-1, 'last')
 ]
 
+REGISTRATION_TYPE = [
+    ('info',  'send information'),
+    ('reg org',  'register organization')
+]
+
 FREQUENCY_CHOICES = [
     (rrule.DAILY,   'Day(s)'),
     (rrule.WEEKLY,  'Week(s)'),
@@ -128,7 +133,7 @@ class SelectOrgForm(Form,Orgs):
     org =  SelectField(choices=Orgs.choices)
 #-------------------------------------------------------------------------------
 class MessageForm(Form,Choices):
-#    
+#
     name_to = SelectField(choices=Choices.choices)
     name_from = TextAreaField(validators=[Required()])
     subject = TextAreaField(validators=[Required()])
@@ -168,16 +173,12 @@ class LoginForm(form.Form):
 
 
 class RegistrationForm(form.Form):
-    org = fields.TextField(validators=[validators.required()])
-    reg_type = fields.TextField(validators=[validators.required()])
-    message = fields.TextAreaField(validators=[validators.required()])
-    first_name = fields.TextField(validators=[validators.required()])
-    last_name = fields.TextField(validators=[validators.required()])
-    email = fields.TextField()
-
-    def validate_login(self, field):
-        if User.objects(last_name=self.last_name.data):
-            raise validators.ValidationError('Duplicate username')
+    org = fields.TextField()
+    reg_type = fields.SelectField(choices=REGISTRATION_TYPE)
+    message = fields.TextAreaField()
+    first_name = fields.TextField()
+    last_name = fields.TextField()
+    email = fields.TextField(validators=[validators.required()])
 
 #===============================================================================
 class EventForm(Form,Choices):
@@ -187,13 +188,13 @@ class EventForm(Form,Choices):
     '''
     title = TextAreaField(validators=[Required()])
     description = TextAreaField(validators=[Required()])
- #   
+ #
     note = TextAreaField()
 
     label =  SelectField(choices=Choices.choices)
 #===========================================================================
 class OccurenceForm(Form):
-#    
+#
     start_time = DateTimeField(validators=[Required()])
     end_time = DateTimeField(validators=[Required()])
 #===============================================================================
@@ -257,9 +258,9 @@ class MultipleOccurrenceForm(Form):
         choices=[('on','On the'), ('each','Each:')]
     )
 
-#    
+#
 
-#    
+#
     month_ordinal_day =  SelectField(choices=WEEKDAY_LONG)
     each_month_day = SelectMultipleField(
         choices=[(i,"__"+str(i)) for i in range(1,32)],

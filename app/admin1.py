@@ -15,6 +15,7 @@ Copyright [2015] [Marc Bellario]
    limitations under the License.
 '''
 #
+import flask_login as login
 from flask_admin import BaseView, expose
 from flask_admin.form import rules
 from flask_admin.contrib.mongoengine import ModelView
@@ -38,16 +39,28 @@ class MessageView(ModelView):
         }
     }
 
-class UserView(ModelView):
+class SUUserView(ModelView):
   #  list_template='user_index.html'
+    def is_accessible(self):
+       return  login.current_user.is_superuser
     column_filters = ['first_name']
     def get_query(self):
        orgv = session['org']
-#       print orgv
-       if session['su']==True:
-           return User.objects.all()
-       else:
-           return User.objects.filter(org=orgv)
+       print orgv
+       return User.objects.all()
+
+    column_searchable_list = ('last_name','org')
+
+class UserView(ModelView):
+  #  list_template='user_index.html'
+    def is_accessible(self):
+       return not login.current_user.is_superuser
+    column_filters = ['first_name']
+    column_exclude_list = ('pw_hash')
+    def get_query(self):
+       orgv = session['org']
+       print orgv
+       return User.objects.filter(org=orgv)
 
     column_searchable_list = ('last_name','org')
     '''
