@@ -22,6 +22,7 @@ from flask_mongoengine import MongoEngine
 from flask.ext.admin.contrib.mongoengine.view import ModelView
 from models import *
 from admin1 import *
+import base64
 # Create application
 app = Flask(__name__)
 
@@ -29,7 +30,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456790'
 #app.config['MONGODB_SETTINGS'] = {'DB': 'newforum6'}
 #app.config['MONGODB_SETTINGS'] = {'DB': "cod101", "host":'mongodb://admin010101:010101admin@ds043262.mongolab.com:43262/cod101'}
-app.config['MONGODB_SETTINGS'] = {'DB': "heroku_ksxdn3s4", "host":'mongodb://sheng01:huan01@ds053784.mongolab.com:53784/heroku_ksxdn3s4'}
+connection_string = base64.b64decode('bW9uZ29kYjovL3NoZW5nMDE6aHVhbjAxQGRzMDUzNzg0Lm1vbmdvbGFiLmNvbTo1Mzc4NC9oZXJva3Vfa3N4ZG4zczQ=')
+app.config['MONGODB_SETTINGS'] = {'DB': "heroku_ksxdn3s4", "host":connection_string}
 # Create models
 db = MongoEngine()
 db.init_app(app)
