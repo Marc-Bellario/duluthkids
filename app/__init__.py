@@ -32,8 +32,14 @@ app.config['SECRET_KEY'] = '\xc5\xcc\x8c\xa1\xe7\x05{\x16\xd2\x80r\xcc~\x85\xb6u
 connection_string = base64.b64decode('bW9uZ29kYjovL3NoZW5nMDE6aHVhbjAxQGRzMDUzNzg0Lm1vbmdvbGFiLmNvbTo1Mzc4NC9oZXJva3Vfa3N4ZG4zczQ=')
 app.config['MONGODB_SETTINGS'] = {'DB': "heroku_ksxdn3s4", "host":'mongodb://admin010101:010101admin@ds043262.mongolab.com:43262/cod101'}
 # Create models
-db = MongoEngine()
-db.init_app(app)
+try:
+    db = MongoEngine()
+    db.init_app(app)
+except Exception as e:
+        print app
+        print e.args      # arguments stored in .args
+        print " - init exception value: ", e
+#        return redirect(url_for('.home'))
 # Initialize flask-login
 def init_login():
     login_manager = login.LoginManager()
