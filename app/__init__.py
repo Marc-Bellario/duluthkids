@@ -30,7 +30,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '\xc5\xcc\x8c\xa1\xe7\x05{\x16\xd2\x80r\xcc~\x85\xb6u2\xf2gL\xe9f\xee\x14'
 #app.config['MONGODB_SETTINGS'] = {'DB': 'newforum6'}
 connection_string = base64.b64decode('bW9uZ29kYjovL3NoZW5nMDE6aHVhbjAxQGRzMDUzNzg0Lm1vbmdvbGFiLmNvbTo1Mzc4NC9oZXJva3Vfa3N4ZG4zczQ=')
-app.config['MONGODB_SETTINGS'] = {'DB': "heroku_ksxdn3s4", "host":'mongodb://admin010101:010101admin@ds043262.mongolab.com:43262/cod101'}
+app.config['MONGODB_SETTINGS'] = {'DB': "code101", "host":'mongodb://admin010101:010101admin@ds043262.mongolab.com:43262/cod101'}
 # Create models
 try:
     db = MongoEngine()
