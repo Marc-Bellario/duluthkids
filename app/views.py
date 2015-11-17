@@ -41,7 +41,11 @@ class MyBase(BaseView):
 
 @app.route('/')
 def index():
-    swt_admin = 'admin' in session['roles']
+    print " begin index "
+    if session.get('roles') is not None:
+        swt_admin = 'admin' in session['roles']
+    else:
+        swt_admin = False
     return render_template('index.html', user=login.current_user, swt_admin=swt_admin)
 
 @app.route('/list')
@@ -161,7 +165,11 @@ def create_post(id,dt):
 @app.route('/write', methods=['GET', 'POST'])
 #@login_required
 def write():
-    swt_admin = 'admin' in session['roles']
+    if session.get('roles') is not None:
+        swt_admin = 'admin' in session['roles']
+    else:
+        swt_admin = False
+
     return render_template('write.html',swt_admin=swt_admin)
 
 @app.route('/logout')
@@ -210,7 +218,11 @@ def home():
         doclist2.append(doc)
     count = len(doclist1)
     flash("This is a demo !!", category='success')
-    swt_admin = 'admin' in session['roles']
+    if session.get('roles') is not None:
+        swt_admin = 'admin' in session['roles']
+    else:
+        swt_admin = False
+
     return render_template('home1.html',events=doclist1,events_post=doclist2,count=count,ctr=0,swt_admin=swt_admin)
 
 @app.route('/check_passwords/')
@@ -262,7 +274,11 @@ def register_view():
         registration.save()
         flash("Your registration will be reviewed", category='success')
         return redirect(url_for('home'))
-    swt_admin = 'admin' in session['roles']
+    if session.get('roles') is not None:
+        swt_admin = 'admin' in session['roles']
+    else:
+        swt_admin = False
+
     return render_template('registration.html', form=form, swt_admin=swt_admin)
 
 
