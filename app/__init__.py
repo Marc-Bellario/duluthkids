@@ -37,8 +37,8 @@ if 'MONGOLAB_URI' in os.environ:
 if 'MONGOLAB_URI' in os.environ:
     dbname_string = str(os.environ['MONOGO_LAB_DBNAME'])
     print dbname_string
-app.config['MONGODB_SETTINGS'] = {'DB': 'heroku_c31l58h8', "host":'mongodb://heroku_c31l58h8:bm75t7k5lrvfbr6vmehbuohegc@ds053764.mongolab.com:53764/heroku_c31l58h8'}
-#app.config['MONGODB_SETTINGS'] = {'DB': str(os.environ['MONOGO_LAB_DBNAME'], "host":str(os.environ['MONGOLAB_URI'])}
+#app.config['MONGODB_SETTINGS'] = {'DB': 'heroku_c31l58h8', "host":'mongodb://heroku_c31l58h8:bm75t7k5lrvfbr6vmehbuohegc@ds053764.mongolab.com:53764/heroku_c31l58h8'}
+app.config['MONGODB_SETTINGS'] = {'DB': dbname_string, "host":connection_string}
 # Create models
 try:
     db = MongoEngine()
