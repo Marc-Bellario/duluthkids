@@ -253,7 +253,10 @@ def login_view():
 #        print session['org']
         flash("Logged in successfully!", category='success')
         return redirect(url_for('index'))
-    swt_admin = 'admin' in session['roles']
+    if session.get('roles') is not None:
+        swt_admin = 'admin' in session['roles']
+    else:
+        swt_admin = False
     return render_template('login.html', title='login', form=form, swt_admin=swt_admin)
 
 
