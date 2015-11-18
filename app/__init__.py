@@ -30,7 +30,7 @@ app = Flask(__name__)
 # Create dummy secrey key so we can use sessions
 app.config['SECRET_KEY'] = '\xc5\xcc\x8c\xa1\xe7\x05{\x16\xd2\x80r\xcc~\x85\xb6u2\xf2gL\xe9f\xee\x14'
 #app.config['MONGODB_SETTINGS'] = {'DB': 'newforum6'}
-app.config['MONGODB_SETTINGS'] = {'DB': str(os.environ['MONGO_LAB_DBNAME'], "host":str(os.environ['MONGOLAB_URI'])}
+app.config['MONGODB_SETTINGS'] = {'DB': str(os.environ['MONOGO_LAB_DBNAME'], "host":str(os.environ['MONGOLAB_URI'])}
 # Create models
 try:
     db = MongoEngine()
